@@ -1,0 +1,53 @@
+version: "3.7"
+services:
+  myweb:
+    build:
+      context: .
+      args:
+        myname: "Tony"
+    image: samliuforwork/myweb1:latest
+    ports: 
+      - "8082:80"
+    networks:
+      - mybridge001
+  myweb2:
+    build:
+      context: .
+      args:
+        myname: "Chris"
+    image: samliuforwork/myweb2:latest
+    ports: 
+      - "8083:80"   
+    networks:
+      - mybridge001
+  myweb3:
+    build:
+      context: .
+      args:
+        myname: "Jane"
+    image: samliuforwork/myweb3:latest
+    ports: 
+      - "8084:80"   
+    networks:
+      - mybridge001
+  myweb4:
+    image: samliuforwork/myweb1:latest
+    ports: 
+      - "8085:80"  
+    networks:
+      - mybridge002
+  myweb5:
+    image: samliuforwork/myweb1:latest
+    ports: 
+      - "8086:80"  
+    networks:
+      - mybridge002
+    volumes:
+      - mainpage-vol002:/var/www/localhost/htdocs/
+
+networks:
+  mybridge001:
+  mybridge002:
+
+volumes:
+  mainpage-vol002:
